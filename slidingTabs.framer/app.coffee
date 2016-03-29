@@ -1,17 +1,20 @@
 Screen.backgroundColor = "#f5f5f6"
 
+# Main scrollable container
 navTabs = new ScrollComponent
 	width: Screen.width
 	height: 150
 	x: 0
 	y: 0
-	backgroundColor: ""
+	backgroundColor: "none"
 	scrollVertical: false
 	shadowY: 2
 	shadowBlur: 0
 	shadowSpread: 0
 	shadowColor: "rgba(0, 0, 0, 0.1)"
 
+
+# Add a few buttons to the scroll bar
 btn1 = new Layer
 	parent: navTabs.content
 	html: "Messages"
@@ -43,8 +46,9 @@ for item in navTabs.content.children
 		"text-align" : "center"
 		"color" : "rgba(0, 0, 0, 0.7)"
 		"font-size" : "42px"
-		"padding-top" : "56px"
+		"padding-top" : "58px"
 
+# The horizontal bar marking the active tab
 activeTabMark = new Layer
 	parent: navTabs.content
 	y: navTabs.height - 10
@@ -52,6 +56,8 @@ activeTabMark = new Layer
 	width: btn1.width
 	backgroundColor: "#ffcc44"
 
+# Loop around all the navTabs children and add a tap event to each
+# This also adds it to activeTabMark but we don't mind that either way
 for item in navTabs.content.children
 	item.on Events.TapEnd, (event, target) =>
 		activeTabMark.animate
@@ -59,7 +65,3 @@ for item in navTabs.content.children
 			properties:
 				x: target.x
 				width: target.width
-
-
-
-
